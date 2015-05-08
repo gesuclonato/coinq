@@ -5,8 +5,24 @@
 var passport = require('passport');
 module.exports = {
  
-  login: function (req, res) {
-    res.view();
+  register: function (req, res) {
+    var username = req.param("username");
+    var password = req.param("password");
+    if (!username || username.length == 0)
+      res.send("Please provide a username");
+    else
+      User.findOne({username: req.param("username")}, function onFoundUser(error, user) {
+        if (error)
+          res.send("DB Error");
+        else {
+          User.create({username: username, password: password}, function onUserCreated(error, user) {
+              if (error)
+                res.send("DB Error");
+              else
+                res.send(user);
+          });
+        }
+    });
   },
   process: function(req, res){
     passport.authenticate('local', function(err, user, info) {
