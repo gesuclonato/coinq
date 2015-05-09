@@ -8,7 +8,6 @@
  *
  */
 module.exports = function(req, res, next) {
-
   // User is allowed, proceed to controller
   if (req.isAuthenticated())
     return next();

@@ -8,14 +8,15 @@ module.exports = {
   register: function (req, res) {
     var username = req.param("username");
     var password = req.param("password");
+    var role = req.param("role");
     if (!username || username.length == 0)
       res.send("Please provide a username");
     else
-      User.findOne({username: req.param("username")}, function onFoundUser(error, user) {
+      User.findOne({username: username}, function onFoundUser(error, user) {
         if (error)
           res.send("DB Error");
         else {
-          User.create({username: username, password: password}, function onUserCreated(error, user) {
+          User.create({username: username, password: password, role: role}, function onUserCreated(error, user) {
               if (error)
                 res.send("DB Error");
               else

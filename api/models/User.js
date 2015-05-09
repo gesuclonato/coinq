@@ -19,9 +19,14 @@ module.exports = {
       type: 'string',
       required: true
     },
+    role: {
+      type: 'string',
+      default: 'pleb'
+    },
     toJSON: function() {
       var obj = this.toObject();
       delete obj.password;
+      delete obj.role;
       return obj;
     }
   },

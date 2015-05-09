@@ -48,7 +48,12 @@ module.exports.policies = {
 		// before letting any users feed our rabbits
 		// feed : ['isNiceToAnimals', 'hasRabbitFood']
 	// }
-  question: {
-    '*' : 'sessionAuth'
+  QuestionController: {
+    	//'*': false,
+      'find' : 'sessionAuth',
+      'findOne' : 'sessionAuth',
+      'create' : ['sessionAuth', 'isAdmin'],
+      'update' : ['sessionAuth', 'isAdmin'],
+      'destroy' : ['sessionAuth', 'isAdmin']
   }
 };
