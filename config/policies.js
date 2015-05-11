@@ -49,7 +49,7 @@ module.exports.policies = {
 		// feed : ['isNiceToAnimals', 'hasRabbitFood']
 	// }
   QuestionController: {
-    	//'*': false,
+    	'*': false,
       'find' : 'sessionAuth',
       'findOne' : 'sessionAuth',
       'create' : ['sessionAuth', 'isAdmin'],
